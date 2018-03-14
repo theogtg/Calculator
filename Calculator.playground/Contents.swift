@@ -31,19 +31,19 @@ struct Stack<T> {
     }
 }
 
-func add(_ a: Int, _ b: Int)->Int{
+func add(_ a: Double, _ b: Double)->Double{
     return a+b
 }
 
-func sub(_ a: Int, _ b: Int)->Int{
+func sub(_ a: Double, _ b: Double)->Double{
     return a-b
 }
 
-func mult(_ a: Int, _ b: Int)->Int{
+func mult(_ a: Double, _ b: Double)->Double{
     return a*b
 }
 
-func div(_ a: Int, _ b: Int)->Int{
+func div(_ a: Double, _ b: Double)->Double{
     
     if(b != 0){
         return a/b
@@ -52,5 +52,20 @@ func div(_ a: Int, _ b: Int)->Int{
     }
 }
 
+typealias binop = (Double, Double)->Double
 
+let ops: [String: binop] = ["+":add, "-":sub, "*":mult, "/":div]
+
+var opFunc = ops["+"]
+
+var x = opFunc!(5,10)
+
+func doMath(_ a: Double, _ b: Double, _ op: Character) -> Double
+{
+    let opFunc = ops["\(op)"]
+    return opFunc!(a,b)
+}
+
+//fix negatives
+//let x = Double("-4")!
 
