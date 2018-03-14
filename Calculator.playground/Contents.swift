@@ -53,19 +53,32 @@ func div(_ a: Double, _ b: Double)->Double{
 }
 
 typealias binop = (Double, Double)->Double
-
 let ops: [String: binop] = ["+":add, "-":sub, "*":mult, "/":div]
-
 var opFunc = ops["+"]
-
-var x = opFunc!(5,10)
-
-func doMath(_ a: Double, _ b: Double, _ op: Character) -> Double
+func doMath(_ a: Double, _ b: Double, _ op: String) -> Double
 {
     let opFunc = ops["\(op)"]
     return opFunc!(a,b)
 }
 
-//fix negatives
-//let x = Double("-4")!
+//let postfixExpr = ["2.3", "14.32", "+", "2", "*"]
+let postfixExpr = ["-9", "2", "/", "6", "5", "*", "+"]
+func postFixEval(_ tokens: [String]) -> Double
+{
+    var stack = Stack<Double>()
+    for token in tokens{
+        if let num = Double(token) {
+            stack.push(newItem: num)
+        } else {
+            let val2 = stack.pop()!
+            let val1 = stack.pop()!
+            //let b = doMath(val1, val2, token)
+            stack.push(newItem: doMath(val1, val2, token))
+            //stack.push(newItem: b)
+        }
+    }
+    return stack.pop()!
+}
 
+var x = postFixEval(postfixExpr)
+print(x)
