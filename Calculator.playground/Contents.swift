@@ -82,3 +82,26 @@ func postFixEval(_ tokens: [String]) -> Double
 
 var x = postFixEval(postfixExpr)
 print(x)
+
+let infixExpr = ["-9","/", "2","+", "6","*", "5"]
+func inFixEval(_ tokens: [String]) -> Int
+{
+    var operand = Stack<Double>()
+    var operater = Stack<String>()
+    
+    for token in tokens
+    {
+        if let num = Double(token){
+            operand.push(newItem: num)
+        }else if token == ")"{
+            while operater.top() != "("
+            {
+                let val2 = operand.pop()!
+                let val1 = operand.pop()!
+                let operater1 = operater.pop()!
+                operand.push(newItem: doMath(val1, val2, operater1))
+            }
+        }
+    }
+    return 0
+}
