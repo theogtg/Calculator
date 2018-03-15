@@ -91,15 +91,24 @@ func inFixEval(_ tokens: [String]) -> Int
     
     for token in tokens
     {
-        if let num = Double(token){
+        if let num = Double(token)
+        {
             operand.push(newItem: num)
-        }else if token == ")"{
+        }else if token == ")"
+        {
             while operater.top() != "("
             {
                 let val2 = operand.pop()!
                 let val1 = operand.pop()!
                 let operater1 = operater.pop()!
                 operand.push(newItem: doMath(val1, val2, operater1))
+            }
+            operater.pop()
+        }else
+        {
+            while operater.isEmpty() != true &&  
+            {
+                
             }
         }
     }
