@@ -80,20 +80,42 @@ func postFixEval(_ tokens: [String]) -> Double
     return stack.pop()!
 }
 
-var x = postFixEval(postfixExpr)
-print(x)
+func priority(_ char: String)->Int{
+    switch char {
+    case "(":
+        return 20
+    case "+":
+        return 12
+    case "-":
+        return 12
+    case "*":
+        return 13
+    case "/":
+        return 13
+    case ")":
+        return 19
+    default:
+        return 0
+    }
+}
 
-let infixExpr = ["-9","/", "2","+", "6","*", "5"]
-func inFixEval(_ tokens: [String]) -> Int
+//typealias op = (Character)->Int
+
+//var x = postFixEval(postfixExpr)
+//print(x)
+
+let infixExpr = ["3", "*", "4", "-", "(" , "6", "+", "5", ")", "-", "2"]
+func inFixEval(_ tokens: [String]) -> Double
 {
     var operand = Stack<Double>()
     var operater = Stack<String>()
-    
+
     for token in tokens
     {
         if let num = Double(token)
         {
             operand.push(newItem: num)
+            print(num)
         }else if token == ")"
         {
             while operater.top() != "("
@@ -103,14 +125,28 @@ func inFixEval(_ tokens: [String]) -> Int
                 let operater1 = operater.pop()!
                 operand.push(newItem: doMath(val1, val2, operater1))
             }
-            operater.pop()
-        }else
-        {
-            while operater.isEmpty() != true &&  
+            operater.pop()!
+        }else{
+            while(operater.isEmpty() != true &&
+                  priority(operater.top()!) > priority(token))
             {
-                
+                let val2 = operand.pop()!
+                let val1 = operand.pop()!
+                let operater1 = operater.pop()!
+                operand.push(newItem: doMath(val1, val2, operater1))
             }
+            operater.push(newItem: token)
+            print(token)
         }
     }
-    return 0
+    while(operater.isEmpty() != true) {
+        let val2 = operand.pop()!
+        let val1 = operand.pop()!
+        let operater1 = operater.pop()!
+        operand.push(newItem: doMath(val1, val2, operater1))
+    }
+    return operand.pop()!
 }
+
+let x = inFixEval(infixExpr)
+print(x)
