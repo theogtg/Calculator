@@ -1,4 +1,10 @@
 //: Playground - noun: a place where people can play
+//Calculator Playground
+//3-15-16
+//CSC2310 Mobile App Development
+//Tyler Griffith, Yonatan Belayhun, Jason Ellerbeck
+//Calculates infix and postfix expressions.
+
 
 import Cocoa
 
@@ -61,8 +67,6 @@ func doMath(_ a: Double, _ b: Double, _ op: String) -> Double
     return opFunc!(a,b)
 }
 
-//let postfixExpr = ["2.3", "14.32", "+", "2", "*"]
-let postfixExpr = ["-9", "2", "/", "6", "5", "*", "+"]
 func postFixEval(_ tokens: [String]) -> Double
 {
     var stack = Stack<Double>()
@@ -99,11 +103,6 @@ func priority(_ char: String)->Int{
     }
 }
 
-//var x = postFixEval(postfixExpr)
-//print(x)
-
-//let infixExpr = ["3", "*", "4", "-", "(" , "6", "/", "2" , "+", "5", ")", "-", "2"]
-let infixExpr = ["-9", "/", "2", "+", "6", "*", "5"]
 func inFixEval(_ tokens: [String]) -> Double
 {
     var operand = Stack<Double>()
@@ -160,6 +159,22 @@ func inFixEval(_ tokens: [String]) -> Double
     }
     return operand.pop()!
 }
+//test statements
+let infix1 = ["3", "+", "4", "*", "2"]
+let infix2 = ["(", "3", "+", "4", ")", "*", "2"]
+let infix3 = ["-9", "/", "2", "+", "6", "*", "5"]
+let infix4 = ["-9", "/", "(", "2", "+", "6", ")", "*", "5"]
+let postfix1 = ["3", "4", "2", "*", "+"]
+let postfix2 = ["3", "4", "+", "2", "*"]
+let postfix3 = ["-9", "2", "/", "6", "5", "*", "+"]
+let postfix4 = ["-9", "2", "6", "+", "/", "5", "*"]
+//test print statements
+print("Infix 1:", inFixEval(infix1))
+print("Infix 2:", inFixEval(infix2))
+print("Infix 3:", inFixEval(infix3))
+print("Infix 4:", inFixEval(infix4))
+print("Postfix 1:", postFixEval(postfix1))
+print("Postfix 2:", postFixEval(postfix2))
+print("Postfix 3:", postFixEval(postfix3))
+print("Postfix 4:", postFixEval(postfix4))
 
-let x = inFixEval(infixExpr)
-print(x)
