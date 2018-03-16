@@ -99,46 +99,59 @@ func priority(_ char: String)->Int{
     }
 }
 
-//typealias op = (Character)->Int
-
 //var x = postFixEval(postfixExpr)
 //print(x)
 
-let infixExpr = ["3", "*", "4", "-", "(" , "6", "+", "5", ")", "-", "2"]
+//let infixExpr = ["3", "*", "4", "-", "(" , "6", "/", "2" , "+", "5", ")", "-", "2"]
+let infixExpr = ["-9", "/", "2", "+", "6", "*", "5"]
 func inFixEval(_ tokens: [String]) -> Double
 {
     var operand = Stack<Double>()
     var operater = Stack<String>()
 
+    //while there is another element in the infixExpr
     for token in tokens
     {
+        //if the token is a double
         if let num = Double(token)
         {
+            //push onto stack
             operand.push(newItem: num)
-            print(num)
         }else if token == ")"
         {
             while operater.top() != "("
             {
+                //pop 2 values off the stack
                 let val2 = operand.pop()!
                 let val1 = operand.pop()!
+                //pop an operator
                 let operater1 = operater.pop()!
+                //push result
                 operand.push(newItem: doMath(val1, val2, operater1))
             }
+            //pop the "(" off the stack
             operater.pop()!
         }else{
             while(operater.isEmpty() != true &&
-                  priority(operater.top()!) > priority(token))
+                  priority(operater.top()!) >= priority(token) &&
+                  operater.top() != "(")
             {
+                //pop 2 values off the stack
                 let val2 = operand.pop()!
                 let val1 = operand.pop()!
+                //pop an operator
                 let operater1 = operater.pop()!
+                //push result
                 operand.push(newItem: doMath(val1, val2, operater1))
             }
+            //push the current token on the operator stack
             operater.push(newItem: token)
-            print(token)
         }
+        //Print the stacks
+        //print("Operators:" , operater.items)
+        //print("Operands:" , operand.items)
     }
+    //Taking care of any operations pending
     while(operater.isEmpty() != true) {
         let val2 = operand.pop()!
         let val1 = operand.pop()!
