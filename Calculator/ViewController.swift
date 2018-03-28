@@ -35,6 +35,11 @@ struct Stack<T> {
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var label: UITextField!
+    var numOnScreen: Double = 0
+    @IBAction func numbers(_ sender: UIButton) {
+        label.text = label.text! + String(sender.tag)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
