@@ -40,6 +40,36 @@ class ViewController: UIViewController {
     @IBAction func numbers(_ sender: UIButton) {
         label.text = label.text! + String(sender.tag)
     }
+    @IBAction func clear(_ sender: UIButton) {
+        label.text = nil
+    }
+    @IBAction func symbols(_ sender: UIButton) {
+        
+        if sender.tag == 10{
+            label.text = label.text! + "("
+        }
+        if sender.tag == 11{
+            label.text = label.text! + ")"
+        }
+        if sender.tag == 12{
+            label.text = label.text! + "+"
+        }
+        if sender.tag == 13{
+            label.text = label.text! + "-"
+        }
+        if sender.tag == 14{
+            label.text = label.text! + "*"
+        }
+        if sender.tag == 15{
+            label.text = label.text! + "/"
+        }
+        if sender.tag == 16{
+            label.text = label.text! + "‐"
+        }
+        if sender.tag == 17{
+            label.text = label.text! + "."
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
