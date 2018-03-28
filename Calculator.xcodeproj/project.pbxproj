@@ -15,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F17E52D8206B1C7400CB4A19 /* Calculator.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Calculator.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F1CA7B1A20472B5800C1CB36 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1CA7B1D20472B5800C1CB36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1CA7B1F20472B5800C1CB36 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 				F1CA7B1D20472B5800C1CB36 /* AppDelegate.swift */,
 				F1CA7B1F20472B5800C1CB36 /* ViewController.swift */,
 				F1CA7B2120472B5900C1CB36 /* Main.storyboard */,
+				F17E52D8206B1C7400CB4A19 /* Calculator.playground */,
 				F1CA7B2420472B5900C1CB36 /* Assets.xcassets */,
 				F1CA7B2620472B5900C1CB36 /* LaunchScreen.storyboard */,
 				F1CA7B2920472B5900C1CB36 /* Info.plist */,
