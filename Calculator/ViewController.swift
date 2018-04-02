@@ -142,8 +142,8 @@ func inFixEval(_ tokens: [String]) -> Double
             operater.push(newItem: token)
         }
         //Print the stacks
-        //print("Operators:" , operater.items)
-        //print("Operands:" , operand.items)
+        print("Operators:" , operater.items)
+        print("Operands:" , operand.items)
     }
     //Taking care of any operations pending
     while(operater.isEmpty() != true) {
@@ -154,6 +154,7 @@ func inFixEval(_ tokens: [String]) -> Double
     }
     return operand.pop()!
 }
+var numOnScreen = String()
 class ViewController: UIViewController {
 
     @IBOutlet weak var label: UITextField!
@@ -192,8 +193,21 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func Eval(_ sender: UIButton) {
-        let numOnScreen = [label.text!]
-        label.text = String(inFixEval(numOnScreen))
+        print(label.text!)
+        numOnScreen = label.text!
+
+        numOnScreen = label.text!.replacingOccurrences(of: "+", with: " + ")
+        numOnScreen = numOnScreen.replacingOccurrences(of: "-", with: " - ")
+        numOnScreen = numOnScreen.replacingOccurrences(of: "/", with: " / ")
+        numOnScreen = numOnScreen.replacingOccurrences(of: "*", with: " * ")
+        numOnScreen = numOnScreen.replacingOccurrences(of: "(", with: "( ")
+        numOnScreen = numOnScreen.replacingOccurrences(of: ")", with: " )")
+        numOnScreen = numOnScreen.replacingOccurrences(of: "  ", with: " ")
+        let numOnScreen2 = numOnScreen.components(separatedBy: " ")
+        print(numOnScreen)
+        print(numOnScreen2)
+        label.text = String(inFixEval(numOnScreen2))
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
