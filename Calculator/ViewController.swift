@@ -1,13 +1,11 @@
 //
 //  ViewController.swift
-//  Calculator
-//
-//  Created by Yonatan Belayhun on 2/28/18.
-//  Copyright © 2018 Yonatan Belayhun. All rights reserved.
+//  Calculator Project- Done to the point where it takes in infix expressions and evaluates them.
+//  +/- button doesnt work.
 //
 
 import UIKit
-
+//The creation of stacks
 struct Stack<T> {
     var items = [T]()
     mutating func push(newItem: T){
@@ -32,18 +30,19 @@ struct Stack<T> {
         return false
     }
 }
+//Addition Function
 func add(_ a: Double, _ b: Double)->Double{
     return a+b
 }
-
+//Substraction Function
 func sub(_ a: Double, _ b: Double)->Double{
     return a-b
 }
-
+//Multiplication Function
 func mult(_ a: Double, _ b: Double)->Double{
     return a*b
 }
-
+//Division Function
 func div(_ a: Double, _ b: Double)->Double{
     
     if(b != 0){
@@ -78,7 +77,7 @@ func postFixEval(_ tokens: [String]) -> Double
     }
     return stack.pop()!
 }
-
+//Checks for priority
 func priority(_ char: String)->Int{
     switch char {
     case "(":
@@ -157,14 +156,17 @@ func inFixEval(_ tokens: [String]) -> Double
 var numOnScreen = String()
 class ViewController: UIViewController {
 
+    //name of textfield
     @IBOutlet weak var label: UITextField!
-    
+    //Number buttons function into textfield
     @IBAction func numbers(_ sender: UIButton) {
         label.text = label.text! + String(sender.tag)
     }
+    //Clears the textfield
     @IBAction func clear(_ sender: UIButton) {
         label.text = nil
     }
+    //Math symbols function to put it into the textfield
     @IBAction func symbols(_ sender: UIButton) {
         
         if sender.tag == 10{
@@ -186,28 +188,31 @@ class ViewController: UIViewController {
             label.text = label.text! + "/"
         }
         if sender.tag == 16{
-            label.text = label.text! + "‐"
+            label.text = label.text! + "-"
         }
         if sender.tag == 17{
             label.text = label.text! + "."
         }
     }
+    //Eval button function.
     @IBAction func Eval(_ sender: UIButton) {
-        print(label.text!)
-        numOnScreen = label.text!
-
+        
+        //these replace all instances if math symbols with the symbols and added spaces
         numOnScreen = label.text!.replacingOccurrences(of: "+", with: " + ")
         numOnScreen = numOnScreen.replacingOccurrences(of: "-", with: " - ")
         numOnScreen = numOnScreen.replacingOccurrences(of: "/", with: " / ")
         numOnScreen = numOnScreen.replacingOccurrences(of: "*", with: " * ")
         numOnScreen = numOnScreen.replacingOccurrences(of: "(", with: "( ")
         numOnScreen = numOnScreen.replacingOccurrences(of: ")", with: " )")
+        
+        //replaces all 2 spaces with 1 space
         numOnScreen = numOnScreen.replacingOccurrences(of: "  ", with: " ")
+        
+        //replaces makes array of [String]
         let numOnScreen2 = numOnScreen.components(separatedBy: " ")
         print(numOnScreen)
         print(numOnScreen2)
         label.text = String(inFixEval(numOnScreen2))
-        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
