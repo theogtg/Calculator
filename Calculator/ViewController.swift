@@ -48,7 +48,8 @@ func div(_ a: Double, _ b: Double)->Double{
     if(b != 0){
         return a/b
     }else{
-        return 0 //try catch
+        print("Error! Divides by 0!") //try catch
+        return 0
     }
 }
 
@@ -168,12 +169,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func del(_ sender: UIButton) {
-        label.text = String(label.text!.dropLast())
+        //delete
+        label.deleteBackward()
     }
     
     //Math symbols function to put it into the textfield
     @IBAction func symbols(_ sender: UIButton) {
-        
         if sender.tag == 10{
             label.text = label.text! + "("
         }
@@ -200,9 +201,27 @@ class ViewController: UIViewController {
         }
         if sender.tag == 18{
             //left cursor
+            if let selectedRange = label.selectedTextRange {
+                
+                // and only if the new position is valid
+                if let newPosition = label.position(from: selectedRange.start, offset: -1) {
+                    
+                    // set the new position
+                    label.selectedTextRange = label.textRange(from: newPosition, to: newPosition)
+                }
+            }
         }
         if sender.tag == 19{
             //right cursor
+            if let selectedRange = label.selectedTextRange {
+                
+                // and only if the new position is valid
+                if let newPosition = label.position(from: selectedRange.start, offset: 1) {
+                    
+                    // set the new position
+                    label.selectedTextRange = label.textRange(from: newPosition, to: newPosition)
+                }
+            }
         }
         if sender.tag == 20{
             //sqare root
@@ -214,6 +233,7 @@ class ViewController: UIViewController {
         //variable arrays
         let operators: [String] = ["+", "-", "*", "/"]
         let nums: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+        let pars: [String] = ["(", ")"]
         //these replace all instances if math symbols with the symbols and added spaces
         numOnScreen = label.text!.replacingOccurrences(of: "+", with: " + ")
         numOnScreen = numOnScreen.replacingOccurrences(of: "-", with: " - ")
@@ -236,11 +256,12 @@ class ViewController: UIViewController {
         numOnScreen = numOnScreen.replacingOccurrences(of: "  ", with: " ")
         
         
-        //removes spaces in beginning and end of string
+        //detects empty string
         if numOnScreen.isEmpty == true || numOnScreen.first == nil{
             print("Error! Invalid input, empty string detected!")
         }
         else{
+            //removes spaces in beginning and end of string
             if numOnScreen.first! == " "{
                 numOnScreen = String(numOnScreen.dropFirst())
             }
@@ -256,6 +277,18 @@ class ViewController: UIViewController {
                 operators.contains(numArray[2]) {
                 print("postfix")
                 let ans = postFixEval(numArray)
+                //test for divide by 0
+                let isNan = ans.isNaN
+                if isNan == true{
+                    label.text = "Error! Divided by 0!"
+                }
+                else {label.text = String(ans)}
+            }
+            else if (nums.contains(numArray[0]) && operators.contains(numArray[1])) ||
+                    (pars.contains(numArray[0]) && nums.contains(numArray[1]) && operators.contains(numArray[2])){
+                print("infix")
+                let ans = inFixEval(numArray)
+                //test for divide by 0
                 let isNan = ans.isNaN
                 if isNan == true{
                     label.text = "Error! Divided by 0!"
@@ -263,15 +296,11 @@ class ViewController: UIViewController {
                 else {label.text = String(ans)}
             }
             else{
-                print("infix")
-                let ans = inFixEval(numArray)
-                let isNan = ans.isNaN
-                if isNan == true{
-                    label.text = "Error! Divided by 0!"
-                }
-                else {label.text = String(ans)}            }
+                print("Error! Invalid Expression")
+            }
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

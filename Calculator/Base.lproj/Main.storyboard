@@ -137,7 +137,7 @@
                                     <action selector="symbols:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pVt-Mf-Duz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="17" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F39-4n-Aqg" userLabel="←">
+                            <button opaque="NO" tag="18" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F39-4n-Aqg" userLabel="←">
                                 <rect key="frame" x="68" y="340" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="←"/>
@@ -179,20 +179,12 @@
                                     <action selector="symbols:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ABr-hr-LqE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="17" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xd-Kh-GGP" userLabel="→">
+                            <button opaque="NO" tag="19" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xd-Kh-GGP" userLabel="→">
                                 <rect key="frame" x="135" y="340" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="→"/>
                                 <connections>
                                     <action selector="symbols:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0gU-7f-aFh"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="17" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qm8-eA-11I">
-                                <rect key="frame" x="202" y="340" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="√"/>
-                                <connections>
-                                    <action selector="symbols:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZyE-tO-Jgh"/>
                                 </connections>
                             </button>
                         </subviews>
