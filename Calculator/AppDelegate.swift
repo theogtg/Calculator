@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Calculator
 //
-//  Created by Yonatan Belayhun on 2/28/18.
+//  Created by Yonatan Belayhun and Tyler Griffith on 2/28/18.
 //  Copyright © 2018 Yonatan Belayhun. All rights reserved.
 //
 
