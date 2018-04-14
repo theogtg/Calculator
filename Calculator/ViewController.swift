@@ -73,9 +73,8 @@ func postFixEval(_ tokens: [String]) -> Double
         } else {
             let val2 = stack.pop()!
             let val1 = stack.pop()!
-            //let b = doMath(val1, val2, token)
+    
             stack.push(newItem: doMath(val1, val2, token))
-            //stack.push(newItem: b)
         }
     }
     return stack.pop()!

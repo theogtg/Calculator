@@ -648,8 +648,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="right" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AQt-xx-T7Z">
-                                <rect key="frame" x="0.0" y="20" width="375" height="110"/>
-                                <color key="backgroundColor" red="0.4260453979195305" green="0.42386054972507137" blue="0.42823024611398963" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <rect key="frame" x="0.0" y="21" width="375" height="109"/>
                                 <color key="textColor" red="1" green="0.99073392869999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="90"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -657,7 +656,6 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="AQt-xx-T7Z" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1d2-Nx-Vai"/>
                             <constraint firstItem="xyk-fl-qHh" firstAttribute="leading" secondItem="XdE-Pe-0Xq" secondAttribute="trailing" constant="8" id="3Xf-qa-EBP"/>
                             <constraint firstItem="veK-CW-82P" firstAttribute="leading" secondItem="xTc-Vp-UJo" secondAttribute="trailing" constant="8" id="4QX-JY-Rk1"/>
                             <constraint firstItem="F39-4n-Aqg" firstAttribute="top" secondItem="slV-BI-V7u" secondAttribute="bottom" constant="8" id="4UJ-mp-aFC"/>
