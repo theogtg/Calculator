@@ -275,6 +275,7 @@ class ViewController: UIViewController {
             var numArray = numOnScreen.components(separatedBy: " ")
             print(numOnScreen)
             print(numArray)
+            //check to see if the expressions are postfix or infix
             if operators.contains(numArray.last!) {
                 print("postfix")
                 let ans = postFixEval(numArray)
@@ -295,6 +296,7 @@ class ViewController: UIViewController {
                 numOnScreen = numOnScreen.replacingOccurrences(of: "*", with: " * ")
                 numOnScreen = numOnScreen.replacingOccurrences(of: "(", with: "( ")
                 numOnScreen = numOnScreen.replacingOccurrences(of: ")", with: " )")
+                //replaces makes array of [String]
                 numArray = numOnScreen.components(separatedBy: " ")
                 
                 let ans = inFixEval(numArray)
