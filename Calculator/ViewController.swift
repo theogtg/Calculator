@@ -1,6 +1,8 @@
-//
+//  Authors: Yonatan Belayhun and Tyler Griffith
+//  Calculator does flip landscape wise.
 //  ViewController.swift
 //  Calculator Project- Done to the point where it takes in infix expressions and evaluates them.
+//                      Also evaluates postfix expressions but doesnt evaluate 2 digit numbers in postfix expression.
 //  +/- button doesnt work.
 //
 
@@ -78,7 +80,7 @@ func postFixEval(_ tokens: [String]) -> Double
     }
     return stack.pop()!
 }
-//Checks for priority
+//Checks for priority of operations
 func priority(_ char: String)->Int{
     switch char {
     case "(":
@@ -175,6 +177,8 @@ class ViewController: UIViewController {
     
     //Math symbols function to put it into the textfield
     @IBAction func symbols(_ sender: UIButton) {
+
+        //tags keep track of symbols in the textfield.
         if sender.tag == 10{
             label.text = label.text! + "("
         }
@@ -223,17 +227,16 @@ class ViewController: UIViewController {
                 }
             }
         }
-        if sender.tag == 20{
-            //sqare root
-        }
     }
+    
     //Eval button function.
     @IBAction func Eval(_ sender: UIButton) {
         
-        //variable arrays
+        //variable arrays used to check if its a postfix expression or infix expression
         let operators: [String] = ["+", "-", "*", "/"]
         let nums: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
         let pars: [String] = ["(", ")"]
+        
         //these replace all instances if math symbols with the symbols and added spaces
         numOnScreen = label.text!.replacingOccurrences(of: "+", with: " + ")
         numOnScreen = numOnScreen.replacingOccurrences(of: "-", with: " - ")
@@ -272,9 +275,7 @@ class ViewController: UIViewController {
             var numArray = numOnScreen.components(separatedBy: " ")
             print(numOnScreen)
             print(numArray)
-            if nums.contains(numArray[0]) &&
-                nums.contains(numArray[1]) &&
-                operators.contains(numArray[2]) {
+            if operators.contains(numArray.last!) {
                 print("postfix")
                 let ans = postFixEval(numArray)
                 //test for divide by 0
@@ -284,9 +285,18 @@ class ViewController: UIViewController {
                 }
                 else {label.text = String(ans)}
             }
-            else if (nums.contains(numArray[0]) && operators.contains(numArray[1])) ||
-                    (pars.contains(numArray[0]) && nums.contains(numArray[1]) && operators.contains(numArray[2])){
+            else if nums.contains(numArray.last!){
                 print("infix")
+               
+                //done again so it recognizes numbers with double, triple etc digits.
+                numOnScreen = label.text!.replacingOccurrences(of: "+", with: " + ")
+                numOnScreen = numOnScreen.replacingOccurrences(of: "-", with: " - ")
+                numOnScreen = numOnScreen.replacingOccurrences(of: "/", with: " / ")
+                numOnScreen = numOnScreen.replacingOccurrences(of: "*", with: " * ")
+                numOnScreen = numOnScreen.replacingOccurrences(of: "(", with: "( ")
+                numOnScreen = numOnScreen.replacingOccurrences(of: ")", with: " )")
+                numArray = numOnScreen.components(separatedBy: " ")
+                
                 let ans = inFixEval(numArray)
                 //test for divide by 0
                 let isNan = ans.isNaN
